@@ -29,7 +29,7 @@ class _LocationScreenState extends State<LocationScreen> {
         temperature = 0;
         weatherMsg = 'Unable to get live data';
         weatherIcon = 'Error';
-        cityName = '';
+        cityName = 'Location';
         return;
       }
       WeatherModel weatherModel = WeatherModel();
@@ -73,10 +73,21 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(context,MaterialPageRoute(builder:(context){
-                        return CityScreen();
-                      }));
+                    onPressed: () async {
+                      var cityName = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CityScreen();
+                          },
+                        ),
+                      );
+                      if (cityName != null) {
+                        WeatherModel weatherModel = WeatherModel();
+                        var weatherData =
+                            await weatherModel.getDataByCityName(cityName);
+                        updateUI(weatherData);
+                      }
                     },
                     child: Icon(
                       Icons.location_city,
