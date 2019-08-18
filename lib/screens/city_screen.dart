@@ -37,19 +37,7 @@ class _CityScreenState extends State<CityScreen> {
                   style: TextStyle(
                     color: Colors.black,
                   ),
-                  decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.location_city,
-                      color: Colors.white,
-                      size: 35.0,
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
+                  decoration: kTextFieldStyle,
                   onChanged: (value) {
                     print(value);
                   },
